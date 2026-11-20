@@ -1,0 +1,359 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Theme: CSS Custom Properties ─────────────────────────────────────────── */
+
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --text: #1a1a1a;
+  --accent: #4a6fa5;
+  --border: #d0d0d0;
+}
+
+:root[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --surface: #2c2c2c;
+  --text: #f0f0f0;
+  --accent: #7eacd4;
+  --border: #444;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 80ms, color 80ms;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────────── */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+/* ─── Theme toggle button ───────────────────────────────────────────────────── */
+
+#theme-toggle {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#theme-toggle:hover {
+  background-color: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ─── Dashboard Grid ────────────────────────────────────────────────────────── */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* ─── Widget Panels ─────────────────────────────────────────────────────────── */
+
+.dashboard-grid > section {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.dashboard-grid > section h2 {
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+/* ─── Storage Error Notice ──────────────────────────────────────────────────── */
+
+#storage-error-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #c0392b;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  z-index: 9999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Form controls ─────────────────────────────────────────────────────────── */
+
+input[type="text"],
+input[type="number"],
+input[type="url"] {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ─── Validation errors ─────────────────────────────────────────────────────── */
+
+.field-error {
+  display: block;
+  color: #c0392b;
+  font-size: 0.85em;
+  margin-top: 0.25rem;
+}
+
+/* ─── To-Do List ────────────────────────────────────────────────────────────── */
+
+.todo-task-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.todo-task-row:last-child {
+  border-bottom: none;
+}
+
+.todo-task-description {
+  flex: 1;
+  word-break: break-word;
+}
+
+.todo-task-completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+#todo-widget ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+#todo-widget li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+#todo-widget li:last-child {
+  border-bottom: none;
+}
+
+#todo-widget .task-text.completed {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+#todo-count {
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.75;
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Quick Links ───────────────────────────────────────────────────────────── */
+
+#quicklinks-widget .links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+#quicklinks-widget .link-btn {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+#quicklinks-widget .link-btn:hover {
+  opacity: 0.85;
+}
+
+/* ─── Focus Timer ───────────────────────────────────────────────────────────── */
+
+#timer-widget .timer-display {
+  font-size: 3rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--text);
+  margin: 0.75rem 0;
+}
+
+#timer-widget .timer-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* ─── Greeting Widget ───────────────────────────────────────────────────────── */
+
+#greeting-widget .time,
+#greeting-widget .greeting-time {
+  font-size: 2.5rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+#greeting-widget .date,
+#greeting-widget .greeting-date {
+  font-size: 0.95rem;
+  color: var(--text);
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+#greeting-widget .greeting,
+#greeting-widget .greeting-text {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.greeting-name-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+.greeting-name-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── To-Do input form ──────────────────────────────────────────────────────── */
+
+.todo-input-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.todo-input-form .todo-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-count-badge {
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.75;
+  margin-top: 0.5rem;
+}
+
+/* ─── Timer duration form ───────────────────────────────────────────────────── */
+
+.timer-duration-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.timer-duration-form label {
+  white-space: nowrap;
+}
+
+.timer-duration-form .timer-duration-input {
+  width: 5rem;
+}
+
+/* ─── Quick Links form ──────────────────────────────────────────────────────── */
+
+.quicklinks-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quicklinks-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quicklinks-add-btn {
+  align-self: flex-start;
+}
+
+.quicklinks-list {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ─── Responsive safety: prevent horizontal scroll at 320px ─────────────────── */
+
+@media (max-width: 360px) {
+  #greeting-widget .greeting-time {
+    font-size: 2rem;
+  }
+
+  #timer-widget .timer-display {
+    font-size: 2.25rem;
+  }
+}
